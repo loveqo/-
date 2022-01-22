@@ -30,6 +30,6 @@ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
 
 apt-get update
 
-apt-get install wireguard-tools
+apt -y --no-install-recommends wireguard-tools
 
 ##ok成功了。
