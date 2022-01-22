@@ -1,0 +1,35 @@
+apt-get update
+
+echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
+
+apt-get update
+
+##可能报错，没有公钥
+
+#W: GPG error: http://deb.debian.org/debian stretch-backports InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 648ACFD622F3D138 NO_PUBKEY 0E98404D386FA1D9
+#W: The repository 'http://deb.debian.org/debian stretch-backports InRelease' is not signed.
+#N: Data from such a repository can't be authenticated and is therefore potentially dangerous to use.
+#N: See apt-secure(8) manpage for repository creation and user configuration details.
+#W: GPG error: http://deb.debian.org/debian unstable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 648ACFD622F3D138 NO_PUBKEY 0E98404D386FA1D9
+
+##注意，NO_PUBKEY 请跟错误提示更改
+
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+
+##可能也报错，提示没有dirmngr
+
+#gpg: failed to start the dirmngr '/usr/bin/dirmngr': No such file or directory
+#gpg: connecting dirmngr at '/run/user/0/gnupg/d.i48u4w6ysumk8enymxjewfuc/S.dirmngr' failed: No such file or directory
+#gpg: keyserver receive failed: No dirmngr
+
+apt-get install dirmngr
+
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+
+apt-get update
+
+apt-get install wireguard-tools
+
+##ok成功了。
