@@ -17,7 +17,7 @@ apt-get update
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
 
-##可能也报错，提示没有dirmngr
+##可能也报错，提示No such file or directory
 
 #gpg: failed to start the dirmngr '/usr/bin/dirmngr': No such file or directory
 #gpg: connecting dirmngr at '/run/user/0/gnupg/d.i48u4w6ysumk8enymxjewfuc/S.dirmngr' failed: No such file or directory
