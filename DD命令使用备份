@@ -17,3 +17,10 @@ dd if=/dev/sdb/sda.img of=/dev/sdc          =>从某个镜像文件恢复到磁�
 gzip -dc sda.img | dd of=/dev/sda			      =>从压缩的文件恢复出来
 
 gzip -dc sda.img | dd of=/dev/sda bs=1M		  =>前面指定了块大小，这里也需要
+
+
+## dd在 GNU Coreutils 8.24+（和更高版本）中，有一个status显示进度的新选项：
+
+## 例子
+
+dd if=/dev/urandom of=/dev/null status=progress
