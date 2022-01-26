@@ -1,0 +1,19 @@
+## DD备份
+
+dd if=/dev/sda of=/dev/sdb				         =>备份整个磁盘到另外一个磁盘
+
+dd if=/dev/sdb of=sda.img				           =>备份整个磁盘为某个镜像文件
+
+dd if=/dev/sda | gzip > sda.img    		     =>备份并且压缩
+
+dd if=/dev/sda bs=1M | gzip > sda.img	     =>指定块大小，备份并压缩（据说能提速）
+
+## DD复原
+
+dd if=/dev/sdb of=/dev/sda					        =>从另一个磁盘恢复回来
+
+dd if=/dev/sdb/sda.img of=/dev/sdc          =>从某个镜像文件恢复到磁盘
+
+gzip -dc sda.img | dd of=/dev/sda			      =>从压缩的文件恢复出来
+
+gzip -dc sda.img | dd of=/dev/sda bs=1M		  =>前面指定了块大小，这里也需要
