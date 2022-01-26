@@ -1,0 +1,18 @@
+检查设备的名称使用fdisk -l  #在我的情况下是/dev/mmcblk0。
+
+使用设备作为参数启动 fdisk：fdisk /dev/mmcblk0
+
+d   #如有必要，使用该命令删除所有现有分区。
+
+使用 n  命令创建一个新的主分区。接受默认起始值，并输入+256M 结束值。使用 t 命令将类型设置为 WIN 95 FAT32 (LBA).
+
+使用 n  命令创建第二个主分区。接受默认的起始值并允许它使用磁盘的剩余部分。使用 t 命令将类型设置为 Linux.
+
+使用 a 命令使第一个分区可引导。
+
+Enter w 将更改写入 SD 卡。
+
+假设您现在有两个名为/dev/mmcblk1p1and /dev/mmcblk1p2（检查fdisk -l）的分区，创建文件系统：
+
+mkdosfs -F 32 /dev/mmcblk1p1
+mkfs.ext4 /dev/mmcblk1p2
