@@ -1,0 +1,13 @@
+1、win+R运行命令services.msc 进入服务
+
+2、找到 Windows Update  右击,选择 属性——》启动类型改为禁用
+
+3、还需要禁用Windows Update Medic Service ，这个服务是为了确保windows update服务不被禁止启动设立的，当用户手机禁用Windows Update服务之后，Windows Update Medic Service服务又会自动开启，那么想要禁用自动更新就要确保Windows Update Medic Service服务被禁用，但是用户操作时都会遇到拒绝访问的提示。
+
+解决方法：
+
+1、首先按下WIN+R，然后输入regedit回车；
+
+2、定位到 “HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc”，
+
+单击：右侧找到“Start”键，右键点击“修改”，将数值改为“4”
