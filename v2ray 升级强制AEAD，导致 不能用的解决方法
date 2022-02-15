@@ -1,0 +1,31 @@
+首先下面命令，查看v2ray的systemd的详细路径和内容：
+systemctl cat v2ray
+然后会看到类似下面内容：
+
+# /etc/systemd/system/v2ray.service
+[Unit]
+Description=V2Ray Service
+Documentation=https://www.v2fly.org/
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/v2ray -config /etc/v2ray/config.json
+Restart=on-failure
+RestartPreventExitStatus=23
+
+[Install]
+WantedBy=multi-user.target
+
+
+可以看到上面有文件路径：
+vi /etc/systemd/system/v2ray.service
+然后修改一下，在 Service 区块添加一行：
+Environment="V2RAY_VMESS_AEAD_FORCED=false"
+然后更新一下systemd服务：
+systemctl daemon-reload
+最后重启一下v2ray就好了。
+systemctl restart v2ray
